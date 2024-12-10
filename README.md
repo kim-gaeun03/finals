@@ -49,5 +49,22 @@
 /**
 
 @2024 12.10 프로그램 주제 설정
+@import 작성
+
 
  */
+
+
+import java.io.*;
+import java.util.*;
+
+public class GetMenu {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		RestaurantManager manager = new RestaurantManager();
+		
+
+	}
+
+}
