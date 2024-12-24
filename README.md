@@ -114,6 +114,7 @@ public class GetMenu {
 }
 
 // 맛집 관리 클래스
+
 class RestaurantManager {
     private ArrayList<Restaurant> restaurants;
 
