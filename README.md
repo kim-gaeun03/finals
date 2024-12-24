@@ -131,3 +131,47 @@ class RestaurantManager {
         System.out.println("맛집이 등록되었습니다!");
     }
 
+    public void viewRestaurants() {
+        if (restaurants.isEmpty()) {
+            System.out.println("등록된 맛집이 없습니다.");
+        } else {
+            System.out.println("--- 등록된 맛집 목록 ---");
+            for (int i = 0; i < restaurants.size(); i++) {
+                System.out.printf("[%d] %s (%s)\n", i + 1,
+                        restaurants.get(i).getName(), restaurants.get(i).getLocation());
+            }
+        }
+    }
+
+    public void addReview(Scanner scanner) {
+        if (restaurants.isEmpty()) {
+            System.out.println("등록된 맛집이 없습니다.");
+            return;
+        }
+
+        System.out.println("--- 리뷰 작성할 맛집 선택 ---");
+        for (int i = 0; i < restaurants.size(); i++) {
+            System.out.printf("[%d] %s\n", i + 1, restaurants.get(i).getName());
+        }
+
+        System.out.print("맛집 번호: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // 개행 문자 소비
+
+        if (choice < 1 || choice > restaurants.size()) {
+            System.out.println("올바른 번호를 선택하세요.");
+            return;
+        }
+
+        Restaurant selectedRestaurant = restaurants.get(choice - 1);
+        System.out.print("평점 (0-5): ");
+        int rating = scanner.nextInt();
+        scanner.nextLine(); // 개행 문자 소비
+        System.out.print("리뷰: ");
+        String review = scanner.nextLine();
+
+        selectedRestaurant.setRating(rating);
+        selectedRestaurant.setReview(review);
+        System.out.println("리뷰가 등록되었습니다!");
+    }
+}
