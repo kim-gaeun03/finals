@@ -49,7 +49,7 @@
  * @2024-12-10 프로그램 주제 설정
  * import 작성
  * 기본 틀 구성
- * 
+ * 맛집 관리 클래스 제작
  * 
  * 
  * 
@@ -112,4 +112,21 @@ public class GetMenu {
         	}
     	}
 }
+
+// 맛집 관리 클래스
+class RestaurantManager {
+    private ArrayList<Restaurant> restaurants;
+
+    public RestaurantManager() {
+        restaurants = new ArrayList<>();
+    }
+
+    public void addRestaurant(Scanner scanner) {
+        System.out.print("맛집 이름: ");
+        String name = scanner.nextLine();
+        System.out.print("맛집 위치: ");
+        String location = scanner.nextLine();
+        restaurants.add(new Restaurant(name, location));
+        System.out.println("맛집이 등록되었습니다!");
+    }
 
