@@ -210,6 +210,18 @@ public class Menu {
             }
         }
     }
+    
+    private void updateTable() {
+        tableModel.setRowCount(0); // 기존 데이터 삭제
+        for (Restaurant restaurant : restaurants) {
+            tableModel.addRow(new Object[]{
+                    restaurant.getName(),
+                    restaurant.getLocation(),
+                    restaurant.getRating(),
+                    restaurant.getReview()
+            });
+        }
+    }
 
    
 
