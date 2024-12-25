@@ -50,7 +50,7 @@
  * import 작성
  * 프레임 제작
  * 테이블, 버튼 제작
- * 
+ * 버튼 작동
  * 
  * 
  * 
@@ -105,6 +105,35 @@ public class Menu {
         buttonPanel.add(addButton);
         buttonPanel.add(reviewButton);
         buttonPanel.add(exitButton);
+
+        
+        frame.add(scrollPane, BorderLayout.CENTER);
+        frame.add(buttonPanel, BorderLayout.SOUTH);
+
+        // 버튼 작동
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addRestaurant();
+            }
+        });
+
+        reviewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addReview();
+            }
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        frame.setVisible(true);
+    }
    
 
 
