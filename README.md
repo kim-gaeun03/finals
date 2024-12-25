@@ -52,7 +52,7 @@
  * 테이블, 버튼 제작
  * 버튼 작동
  * 맛집 등록 기능
- * 
+ * 리뷰 추가
  * 
  * 
  * 
@@ -157,6 +157,60 @@ public class Menu {
             }
         }
     }
+
+    // 리뷰 추가
+    private void addReview() {
+        if (restaurants.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "등록된 맛집이 없습니다.");
+            return;
+        }
+
+        String[] restaurantNames = restaurants.stream()
+                .map(Restaurant::getName)
+                .toArray(String[]::new);
+
+        String selectedRestaurant = (String) JOptionPane.showInputDialog(
+                frame,
+                "리뷰를 추가할 맛집을 선택하세요:",
+                "맛집 선택",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                restaurantNames,
+                restaurantNames[0]);
+
+        if (selectedRestaurant != null) {
+            for (Restaurant restaurant : restaurants) {
+                if (restaurant.getName().equals(selectedRestaurant)) {
+                    JTextField ratingField = new JTextField();
+                    JTextField reviewField = new JTextField();
+                    Object[] message = {
+                            "평점 (0-5):", ratingField,
+                            "리뷰:", reviewField
+                    };
+
+                    int option = JOptionPane.showConfirmDialog(frame, message, "평점/리뷰 추가", JOptionPane.OK_CANCEL_OPTION);
+                    if (option == JOptionPane.OK_OPTION) {
+                        try {
+                            int rating = Integer.parseInt(ratingField.getText());
+                            String review = reviewField.getText();
+                            if (rating < 0 || rating > 5) {
+                                JOptionPane.showMessageDialog(frame, "평점은 0에서 5 사이로 입력하세요.");
+                            } else {
+                                restaurant.setRating(rating);
+                                restaurant.setReview(review);
+                                updateTable();
+                                JOptionPane.showMessageDialog(frame, "리뷰가 등록되었습니다!");
+                            }
+                        } catch (NumberFormatException ex) {
+                            JOptionPane.showMessageDialog(frame, "평점은 숫자로 입력하세요.");
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
    
 
 
