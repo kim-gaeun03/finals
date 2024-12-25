@@ -51,7 +51,7 @@
  * 프레임 제작
  * 테이블, 버튼 제작
  * 버튼 작동
- * 
+ * 맛집 등록 기능
  * 
  * 
  * 
@@ -133,6 +133,29 @@ public class Menu {
         });
 
         frame.setVisible(true);
+    }
+
+    // 맛집 등록 
+    private void addRestaurant() {
+        JTextField nameField = new JTextField();
+        JTextField locationField = new JTextField();
+        Object[] message = {
+                "맛집 이름:", nameField,
+                "맛집 위치:", locationField
+        };
+
+        int option = JOptionPane.showConfirmDialog(frame, message, "맛집 등록", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            String name = nameField.getText();
+            String location = locationField.getText();
+            if (!name.isEmpty() && !location.isEmpty()) {
+                restaurants.add(new Restaurant(name, location));
+                tableModel.addRow(new Object[]{name, location, 0, "리뷰 없음"});
+                JOptionPane.showMessageDialog(frame, "맛집이 등록되었습니다!");
+            } else {
+                JOptionPane.showMessageDialog(frame, "모든 필드를 입력하세요.");
+            }
+        }
     }
    
 
