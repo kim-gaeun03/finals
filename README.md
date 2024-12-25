@@ -50,7 +50,7 @@
  * import 작성
  * 기본 틀 구성
  * 맛집 관리 클래스 제작
- * ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ( 기말 제출은 위에것으로 제출. 아래는 GUI로 제작해 보고 싶은데 어렵고 복잡해서 이 아래는 챗GPT의 도움을 받음.)ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+ * 
  * 
  * 
  * 
@@ -64,116 +64,35 @@
  */
 
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-
-
-
-
-
-import java.io.*;
-import java.util.*;
-
-public class GetMenu {
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		RestaurantManager manager = new RestaurantManager();
-		
-		manager.loadRestaurants();
-
-  		while (true) {
-            		System.out.println("\n--- 근처 맛집 공유 프로그램 ---");
-            		System.out.println("[1] 맛집 등록");
-            		System.out.println("[2] 맛집 조회");
-            		System.out.println("[3] 평점/리뷰 등록");
-            		System.out.println("[4] 프로그램 종료");
-
-            		System.out.print("메뉴 선택: ");
-            		int choice = scanner.nextInt();
-            		scanner.nextLine(); 
-
-            		switch (choice) {
-                		case 1:
-                    			manager.addRestaurant(scanner);
-                    			break;
-                		case 2:
-                    			manager.viewRestaurants();
-                    			break;
-                		case 3:
-                    			manager.rateAndReview(scanner);
-                    			break;
-                		case 4:
-                    			manager.saveRestaurants();
-                    			System.out.println("프로그램을 종료합니다.");
-                    			return;
-                		default:
-                    			System.out.println("올바른 메뉴를 선택해주세요.");
-            		}
-        	}
-    	}
-}
-
-// 맛집 관리 클래스
-
-class RestaurantManager {
+public class Menu { 
+    private JFrame frame;
+    private JTable table;
+    private DefaultTableModel tableModel;
     private ArrayList<Restaurant> restaurants;
 
-    public RestaurantManager() {
+    public Menu() {
         restaurants = new ArrayList<>();
+        initialize();
     }
 
-    public void addRestaurant(Scanner scanner) {
-        System.out.print("맛집 이름: ");
-        String name = scanner.nextLine();
-        System.out.print("맛집 위치: ");
-        String location = scanner.nextLine();
-        restaurants.add(new Restaurant(name, location));
-        System.out.println("맛집이 등록되었습니다!");
-    }
+    private void initialize() {
+        // 메인 프레임 설정
+        frame = new JFrame("맛집 공유 프로그램");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.setLayout(new BorderLayout());
 
-    public void viewRestaurants() {
-        if (restaurants.isEmpty()) {
-            System.out.println("등록된 맛집이 없습니다.");
-        } else {
-            System.out.println("--- 등록된 맛집 목록 ---");
-            for (int i = 0; i < restaurants.size(); i++) {
-                System.out.printf("[%d] %s (%s)\n", i + 1,
-                        restaurants.get(i).getName(), restaurants.get(i).getLocation());
-            }
-        }
-    }
 
-    public void addReview(Scanner scanner) {
-        if (restaurants.isEmpty()) {
-            System.out.println("등록된 맛집이 없습니다.");
-            return;
-        }
 
-        System.out.println("--- 리뷰 작성할 맛집 선택 ---");
-        for (int i = 0; i < restaurants.size(); i++) {
-            System.out.printf("[%d] %s\n", i + 1, restaurants.get(i).getName());
-        }
 
-        System.out.print("맛집 번호: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // 개행 문자 소비
 
-        if (choice < 1 || choice > restaurants.size()) {
-            System.out.println("올바른 번호를 선택하세요.");
-            return;
-        }
 
-        Restaurant selectedRestaurant = restaurants.get(choice - 1);
-        System.out.print("평점 (0-5): ");
-        int rating = scanner.nextInt();
-        scanner.nextLine(); // 개행 문자 소비
-        System.out.print("리뷰: ");
-        String review = scanner.nextLine();
 
-        selectedRestaurant.setRating(rating);
-        selectedRestaurant.setReview(review);
-        System.out.println("리뷰가 등록되었습니다!");
-    }
-}
 
-ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ이 아래에 GUI용 새로 만들기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
