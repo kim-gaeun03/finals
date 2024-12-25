@@ -46,7 +46,7 @@
   : 모든 데이터를 파일에 저장하고 종료.
 
 /*
- * @2024-12-10 프로그램 주제 설정 [청주대 맛집 추천 프로그램] ( 프레임제작 이후 세부 설정과 GUI 디자인은 GPT의 도움받아 제작)
+ * @2024-12-10 프로그램 주제 설정 [청주대 맛집 추천 프로그램] (세부 설정일부는 GPT의 도움받아 제작)
  * import 작성
  * 프레임 제작
  * 테이블, 버튼 제작
@@ -236,7 +236,7 @@ public class Menu {
     }
     
     private void updateTable() {
-        tableModel.setRowCount(0); // 기존 데이터 삭제
+        tableModel.setRowCount(0); 
         for (Restaurant restaurant : restaurants) {
             tableModel.addRow(new Object[]{
                     restaurant.getName(),
