@@ -25,11 +25,11 @@
 <3. 프로그램 수행 절차>
 -근처 맛집 공유 프로그램
 
-- 맛집 등록
+- 맛집 등록 --> 삭제 기능 추가!
 - 맛집 조회
 - 찜하기
 - 평점과 리뷰
-- 데이터 저장 및 종료
+- 데이터 저장 및 종료 
 
 <4. 프로그램 동작 절차>
 - 프로그램 시작
@@ -54,7 +54,7 @@
  * 맛집 등록 기능
  * 리뷰 추가
  * 맛집 클래스
- * 
+ * new ! 맛집 삭제 기능 추가 
  * 
  * 
  * 
@@ -103,10 +103,12 @@ public class Menu {
         JPanel buttonPanel = new JPanel();
         JButton addButton = new JButton("맛집 등록");
         JButton reviewButton = new JButton("평점/리뷰 추가");
+        JButton deleteButton = new JButton("맛집 삭제");
         JButton exitButton = new JButton("종료");
 
         buttonPanel.add(addButton);
         buttonPanel.add(reviewButton);
+        buttonPanel.add(deleteButton);
         buttonPanel.add(exitButton);
 
         
@@ -125,6 +127,13 @@ public class Menu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 addReview();
+            }
+        });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	deleteRestaurant();
             }
         });
 
@@ -211,6 +220,18 @@ public class Menu {
                     break;
                 }
             }
+        }
+    }
+
+    // 맛집 삭제 
+    private void deleteRestaurant() {
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(frame, "삭제할 맛집을 선택하세요.");
+        } else {
+            restaurants.remove(selectedRow);
+            tableModel.removeRow(selectedRow);
+            JOptionPane.showMessageDialog(frame, "맛집이 삭제되었습니다.");
         }
     }
     
