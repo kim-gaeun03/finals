@@ -90,6 +90,22 @@ public class Menu {
         frame.setSize(600, 400);
         frame.setLayout(new BorderLayout());
 
+        // 테이블 설정
+        String[] columnNames = {"맛집 이름", "위치", "평점", "리뷰"};
+        tableModel = new DefaultTableModel(columnNames, 0);
+        table = new JTable(tableModel);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        // 버튼 패널
+        JPanel buttonPanel = new JPanel();
+        JButton addButton = new JButton("맛집 등록");
+        JButton reviewButton = new JButton("평점/리뷰 추가");
+        JButton exitButton = new JButton("종료");
+
+        buttonPanel.add(addButton);
+        buttonPanel.add(reviewButton);
+        buttonPanel.add(exitButton);
+   
 
 
 
