@@ -223,6 +223,50 @@ public class Menu {
         }
     }
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(Menu::new);
+    }
+}
+
+// 클래스
+class Restaurant {
+    private String name;
+    private String location;
+    private String review;
+    private int rating;
+
+    public Restaurant(String name, String location) {
+        this.name = name;
+        this.location = location;
+        this.review = "리뷰 없음";
+        this.rating = 0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+}
+
    
 
 
